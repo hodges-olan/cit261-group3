@@ -1,26 +1,18 @@
 <!DOCTYPE html>
-
 <html lang="en-us">
-
 <head>
-<meta name="author" content="BYUI Winter 2017 CIT261 Group 3">
+<meta name="author" content="BYUI Winter 2017 CIT261 Group 3 - Tif Calder, Mark Heldt, Jan Hill, Olan Hodges, Dan Toone">
 <meta name="description" content="Lunch Served is an application that helps you with deciding on which restaurant to go to today.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="css/normalize-mini.css" rel="stylesheet" type="text/css" media="screen">
+<link href="/css/normalize-mini.css" rel="stylesheet" type="text/css" media="screen">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
-<link href="css/stylesheet.css" rel="stylesheet" type="text/css" media="screen">
-
+<link href="/css/stylesheet.css" rel="stylesheet" type="text/css" media="screen">
 <title>Lunch Served: Food at your Fingertips</title>
-
 </head>
-
-
 <body id="home">
     <div id="page">
         <header>
-            <img src="images/logo.jpg" alt="Lunch Served Logo" title="Lunch Served Logo">
-            <button id="showLeft"><img src="images/mobile_menu_button.png" alt="menu button"></button>
-           
+            <img src="/images/logo.jpg" alt="Lunch Served Logo" title="Lunch Served Logo"><button id="showLeft"><img src="/images/mobile_menu_button.png" alt="menu button"></button>
         </header>
         <hr>
         <nav id="normal-menu">
@@ -34,8 +26,6 @@
             <h3>Menu</h3>
                 <a href="javascript:void(0)" class="findLink">Find</a>
                 <a href="javascript:void(0)" class="savedLink">Saved</a>
-                
-               
         </nav>
         <main>
             <div id="find">
@@ -64,17 +54,15 @@
                             <option>French</option>
                             <option>Mexican</option>
                             <option>Greek</option>
-                            <option>Random</option>
                         </select>
                     </label>
-                    <label for="miles" id="milesLabel">Miles:<input type="number" name="miles" min="0" id="miles" required=""></label>
+                    <label for="miles" id="milesLabel">Miles:<input type="number" name="miles" min="0" id="miles" required></label>
                     <label for="cost" id="costLabel" style="margin-bottom:0px;">Cost:<input type="range" name="cost" id="cost" min="0" max="4"></label>
                     <div class="costLabels"><p class="costLabelLeft">Cheap</p><p class="costLabelRight">Expensive</p></div>
-                    <div class="btnWrapper"><button class="searchBtn" id="searchRestaurantFormBtn"><img src="images/search.png" alt="Search button"></button></div>
+                    <div class="btnWrapper"><button class="searchBtn" id="searchRestaurantFormBtn"><img src="/images/search.png" alt="Search button"></button></div>
                 </form>
             </div>
-            
-            <div id='Saved'>
+            <div id="saved">
                 <h2>Saved</h2>
                 <form class="form" id="savedRestaurantsForm">
                     <input type="hidden" id="savedLocation">
@@ -91,7 +79,6 @@
                     <div class="btnWrapper"><button class="openSavedBtn" id="openSavedRestaurantsBtn"><img src="images/search.png" alt="Search button"></button></div>
                 </form>
             </div>
-            
             <div class="restaurantContainer">
                 <h2>Mandarin Restaurant</h2>
                 <div id="phoneInfo" class="resPhoneInfo">
@@ -100,37 +87,23 @@
                         <p>(208)356-5688</p>
                     </div>
                 </div>
-                
                 <div class="openHours">
                     <p>Opening hours</p>
                     <span class="openNow">Open now</span>
                     <div class="hoursOperation">Today 11 AM to 9 PM</div>
                 </div>
                 <h3>Menu</h3>
-                
                     <div id="menu-image" class="restaurantMenu">
                         <img src="images/mandarin_img_1.jpg" alt="Mandarin Restaurant, Rexburg Menu"/>
                     </div>
-                
             </div>
         </main>
-        
             <hr>
             <footer>
-                <p><a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">
-                        <img src="images/cc.png" alt="Creative Commons Logo"></a> 
-                    <a href="https://validator.w3.org/nu/check/referer" target="_blank"><img src="images/html5.png" alt="Valid HTML5!"></a> 
-                    <a href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank"><img src="images/css3.png" alt="Valid CSS!"></a>
-                </p>
-                <p>2017 © BYUI Winter 2017 CIT261 Group 3</p>
+                <p><a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img src="/images/cc.png" alt="Creative Commons Logo"></a> <a href="https://validator.w3.org/nu/check/referer" target="_blank"><img src="/images/html5.png" alt="Valid HTML5!"></a> <a href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank"><img src="/images/css3.png" alt="Valid CSS!"></a></p>
+                <p>2017 &copy; BYUI Winter 2017 CIT261 Group 3</p>
             </footer>
     </div>
-    
-    <script src="javascript/javascript.js" type="text/javascript"></script>
-
+    <script src="/javascript/javascript.js"></script>
 </body>
-
 </html>
-	
-	
-	
