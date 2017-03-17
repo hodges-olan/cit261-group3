@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+<meta name="author" content="Olan Hodges">
+<meta name="description" content="Vehicle Maintenance Journal allows you to add your vehicles, track their maintenance, and see their upcoming maintenance schedule.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="/assessments/cit-261-personal-project/images/favicon.ico" rel="icon" type="image/x-icon">
+<link href="/assessments/cit-261-personal-project/css/normalize-mini.css" rel="stylesheet" type="text/css" media="screen">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+<link href="/assessments/cit-261-personal-project/css/stylesheet.css" rel="stylesheet" type="text/css" media="screen">
+<title>Vehicle Maintenance Journal</title>
+</head>
+    <body id="home">
+    <div id="page">
+        <header>
+            <img src="/assessments/cit-261-personal-project/images/logo.png" alt="Automotive Maintenance Journal Logo" title="Automotive Maintenance Journal Logo"><button id="showLeft"><img src="/assessments/cit-261-personal-project/images/mobile_menu_button.png" alt="menu button"></button>
+        </header>
+        <hr>
+        <nav id="normal-menu">
+            <ul>
+                <li><a href="javascript:void(0)" class="garageLink">Garage</a></li>
+                <li><a href="javascript:void(0)" class="recordLink">Record</a></li>
+                <li><a href="javascript:void(0)" class="journalLink">Journal</a></li>
+                <li><a href="javascript:void(0)" class="nextMaintenanceLink">Next Maintenance</a></li>
+            </ul>
+            <hr>
+        </nav>
+        <nav class="mob-menu" id="mob-menu">
+            <h3>Menu</h3>
+                <a href="javascript:void(0)" class="garageLink">Garage</a>
+                <a href="javascript:void(0)" class="recordLink">Record</a>
+                <a href="javascript:void(0)" class="journalLink">Journal</a>
+                <a href="javascript:void(0)" class="nextMaintenanceLink">Next Maintenance</a>
+        </nav>
+        <main>
+            <div id="garage">
+                <h2>Garage</h2>
+                <div id="garageList"><p id="selected">2012 Acura RL</p></div>
+                <div class="btnWrapper"><button class="addBtn" id="addGarageBtn"><img src="/assessments/cit-261-personal-project/images/plus-symbol.png" alt="Add button"></button><button class="delBtn" id="deleteGarage"><img src="/assessments/cit-261-personal-project/images/recycle-bin.png" alt="Delete button"></button></div>
+                <div id="addGarage" class="modal">
+                    <div class="modalContent">
+                        <div class="modalContentHeader">
+                            <span class="close" id="addGarageClose">×</span>
+                            <h2>Add Vehicle</h2>
+                        </div>
+                        <div class="modalContentBody">
+                            <form class="form" id="addGarageForm">
+                                <label for="year">Year: 
+                                    <select name="year" id="year">
+                                        <option>Select Year</option>
+                                        <option>2017</option>
+                                        <option>2016</option>
+                                        <option>2015</option>
+                                        <option>2014</option>
+                                        <option>2013</option>
+                                        <option>2012</option>
+                                        <option>2011</option>
+                                        <option>2010</option>
+                                        <option>2009</option>
+                                        <option>2008</option>
+                                        <option>2007</option>
+                                        <option>2006</option>
+                                        <option>2005</option>
+                                        <option>2004</option>
+                                        <option>2003</option>
+                                        <option>2002</option>
+                                        <option>2001</option>
+                                        <option>2000</option>
+                                        <option>1999</option>
+                                        <option>1998</option>
+                                        <option>1997</option>
+                                        <option>1996</option>
+                                        <option>1995</option>
+                                        <option>1994</option>
+                                        <option>1993</option>
+                                        <option>1992</option>
+                                        <option>1991</option>
+                                        <option>1990</option>
+                                    </select>
+                                </label>
+                                <label for="make" id="makeLabel">Make:
+                                    <select name="make" id="make" disabled=""></select>
+                                </label>
+                                <label for="model" id="modelLabel">Model:
+                                    <select name="model" id="model" disabled=""></select>
+                                </label>
+                                <input type="hidden" id="modelYearId">
+                                <label for="submodel" id="submodelLabel">Submodel:
+                                    <select name="submodel" id="submodel" disabled=""></select>
+                                </label>
+                                <label for="mileage" id="mileageLabel">Mileage:
+                                    <input type="number" name="mileage" min="0" id="mileage" required="">
+                                </label>
+                                <input type="hidden" id="engine">
+                                <input type="hidden" id="transmission">
+                                <div class="btnWrapper"><button class="addBtn" id="addGarageFormBtn" disabled=""><img src="/assessments/cit-261-personal-project/images/plus-symbol-green.png" alt="Add button"></button></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="record">
+                <h2>Record</h2>
+                <div id="recordList">
+                    <h3 class="selectedVehicle">2012 Acura RL</h3>
+                    <form class="form" id="addRecordForm">
+                        <input type="hidden" id="recordModelYearId" value="100524991">
+                        <label for="recordDate" id="recordDateLabel">Date:<br>
+                            <input type="date" name="recordDate" id="recordDate" required="">
+                        </label>
+                        <label for="recordMileage" id="recordMileageLabel">Mileage:<br>
+                            <input type="number" name="recordMileage" min="0" id="recordMileage" required="">
+                        </label>
+                        <label for="recordNotes" id="recordNotesLabel">Notes:<br>
+                            <textarea name="recordNotes" id="recordNotes" required=""></textarea>
+                        </label>
+                        <div class="btnWrapper"><button class="addBtn" id="addRecordFormBtn"><img src="/assessments/cit-261-personal-project/images/plus-symbol-green.png" alt="Add button"></button></div>
+                    </form>
+                </div>
+            </div>
+            <div id="journal">
+                <h2>Journal</h2>
+                <h3 class="selectedVehicle">2012 Acura RL</h3>
+                <div id="journalList">
+                    <ul id="journalListUL"><li>No records founds</li></ul>
+                </div>
+                <div id="journalEntry" class="modal">
+                    <div class="modalContent">
+                        <div class="modalContentHeader">
+                            <span class="close" id="journalEntryClose">×</span>
+                            <h2 id="journalEntryTitle">No vehicle selected</h2>
+                        </div>
+                        <div id="journalEntryBody" class="modalContentBody">
+                            <form class="form" id="displayRecordForm">
+                                <label for="displayRecordDate" id="displayRecordDateLabel">Date:<br>
+                                    <input type="date" name="displayRecordDate" id="displayRecordDate" disabled="">
+                                </label>
+                                <label for="displayRecordMileage" id="displayRecordMileageLabel">Mileage:<br>
+                                    <input type="number" name="displayRecordMileage" id="displayRecordMileage" disabled="">
+                                </label>
+                                <label for="displayRecordNotes" id="displayRecordNotesLabel">Notes:<br>
+                                    <textarea name="displayRecordNotes" id="displayRecordNotes" disabled=""></textarea>
+                                </label>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="nextMaintenance">
+                <h2>Next Maintenance</h2>
+                <div id="nextMaintenanceList">
+                    <h3 class="selectedVehicle">2012 Acura RL</h3>
+                    <h4 id="nextMaintenanceMileage">7,500 Miles</h4>
+                    <ul id="nextMaintenanceListUL"><li>Change Engine oil</li><li>Replace Oil filter</li><li>Rotate Wheels &amp; tires</li><li>Inspect Suspension</li><li>Inspect boots &amp; seals Drive axles</li><li>Inspect/adjust Valve clearance</li></ul>
+                </div>
+            </div>
+        </main>
+            <hr>
+            <footer>
+                <div id="edmunds"><a href="http://www.edmunds.com/?id=apis"><img src="https://open-api.edmunds.com/api/openapi/v1/logo?size=300&amp;format=horizontal&amp;retina=true&amp;color=blue&amp;api_key=jzchcfwgtz35h4r6rj876nfh" alt="Edmunds Logo"></a></div>
+                <p><a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img src="/assessments/cit-261-personal-project/images/cc.png" alt="Creative Commons Logo"></a> <a href="https://validator.w3.org/nu/check/referer" target="_blank"><img src="/assessments/cit-261-personal-project/images/html5.png" alt="Valid HTML5!"></a> <a href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank"><img src="/assessments/cit-261-personal-project/images/css3.png" alt="Valid CSS!"></a></p>
+                <p>2017 © Olan Hodges</p>
+            </footer>
+    </div>
+    <script src="/assessments/cit-261-personal-project/javascript/edmunds.js"></script>
+
+</body>
+</html>
