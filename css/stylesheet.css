@@ -9,7 +9,7 @@
         margin: 0 auto;
         width: 100%;
         background-color: #323232;
-        background: url('/assessments/cit-261-personal-project/images/background.png');
+        background: url('/images/background.png');
     }
     
     header img {
@@ -113,7 +113,7 @@
 /* General CSS */
 @font-face {
     font-family: 'Delicious-Roman';
-    src: url('/assessments/cit-261-group-project/css/Delicious-Roman.otf');
+    src: url('/css/Delicious-Roman.otf');
 }
 
 main * {
@@ -451,13 +451,13 @@ header a:link, header a:visited, header a:hover, header a:active {
 }
 
 #normal-menu a:hover {
-    color: #116688;
-    text-decoration: underline;
+    color: #E41C25;
+    text-decoration: none;
 }
 
 #normal-menu a:active {
-    color: #116688;
-    text-decoration: underline;
+    color: #07726A;
+    text-decoration: none;
 }
 
 #normal-menu a.activelink {
