@@ -204,7 +204,8 @@ hr {
 
 .modalContentHeader {
     padding: 2px 16px;
-    background-color: #5588aa;
+    background-color: #669999;
+    border-bottom: 1px solid #07726A;
 }
 
 .modalContentHeader h2 {
@@ -213,6 +214,14 @@ hr {
 
 .modalContentBody {
     padding: 2px 16px;
+}
+
+.modalContentBody ul {
+    padding-left: 20px;
+}
+
+.modalContentBody a {
+    text-decoration: underline;
 }
 
 .close {
@@ -227,6 +236,16 @@ hr {
     color: #000000;
     text-decoration: none;
     cursor: pointer;
+}
+
+#modalLoading {
+    position: absolute;
+    top: 50%;
+    height: 64px;
+    margin-top: -32px;
+    width: 64px;
+    left: 50%;
+    margin-left: -32px;
 }
 
 /* Find Form */
@@ -377,6 +396,16 @@ hr {
     background-color: transparent;
 }
 
+.mdlAddBtn, .mdlDelBtn, .mdlSearchBtn {
+    width: 70px;
+    height: 70px;
+    display: inline;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: none;
+    background-color: transparent;
+}
+
 .costLabels {
     display: block;
 }
@@ -403,9 +432,41 @@ hr {
     display: inline;
 }
 
+#find #searchRestaurantsListUL {
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+#find #searchRestaurantsListUL li {
+    padding: 5px;
+}
+
+#find #searchRestaurantsListUL li:nth-child(odd) {
+    background: #669999;
+    color: #FFFFFF;
+    border-top: 1px solid #07726A;
+    border-bottom: 1px solid #07726A;
+}
+
 /* SAVED CSS */
 #saved {
     display: none;
+}
+
+#saved #savedRestaurantsListUL {
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+#saved #savedRestaurantsListUL li {
+    padding: 5px;
+}
+
+#saved #savedRestaurantsListUL li:nth-child(odd) {
+    background: #669999;
+    color: #FFFFFF;
+    border-top: 1px solid #07726A;
+    border-bottom: 1px solid #07726A;
 }
 
 /* HEADER CSS STYLING */
@@ -465,16 +526,15 @@ header a:link, header a:visited, header a:hover, header a:active {
 }
 
 .mob-menu {
-	background: #EF9CA1;
+	background: #669999;
 	position: fixed;
-        width: 240px;
-	height: 100%;
+        width: 210px;
+	height: 44%;
 	top: 0;
 	z-index: 1000;
         left: -240px;
         transition: 0.3s;
 }
-
 
 .mob-menu h3 {
 	color: #FFFFFF;
@@ -482,20 +542,20 @@ header a:link, header a:visited, header a:hover, header a:active {
 	padding: 20px;
 	margin: 0;
 	font-weight: 300;
-	background: #E41C25;
+	background: #07726A;
 }
 
 .mob-menu a {
 	display: block;
 	color: #FFFFFF;
-	font-size: 1.1em;
+	font-size: 1.4em;
 	font-weight: 300;
-        border-bottom: 1px solid #E41C25;
-	padding: 1em;
+        border-bottom: 1px solid #07726A;
+	padding: 22px;
 }
 
 .mob-menu a:hover {
-	background: #E41C25;
+	background: #99CCCC;
 }
 
 .mob-menu a:active {

@@ -31,10 +31,9 @@
             <div id="find">
                 <h2>Find</h2>
                 <form class="form" id="searchRestaurantsForm">
-                    <input type="hidden" id="location">
                     <label for="cuisine" id="cuisineLabel">Cuisine: 
                         <select name="cuisine" id="cuisine">
-                            <option>Select Cuisine</option>
+                            <option>All</option>
                             <option>Burgers</option>
                             <option>Sandwich</option>
                             <option>Pizza</option>
@@ -57,45 +56,44 @@
                         </select>
                     </label>
                     <label for="miles" id="milesLabel">Miles:<input type="number" name="miles" min="0" id="miles" required></label>
-                    <label for="cost" id="costLabel" style="margin-bottom:0px;">Cost:<input type="range" name="cost" id="cost" min="0" max="4"></label>
+                    <label for="cost" id="costLabel" style="margin-bottom:0px;">Max Cost:<input type="range" name="cost" id="cost" min="0" max="4"></label>
                     <div class="costLabels"><p class="costLabelLeft">Cheap</p><p class="costLabelRight">Expensive</p></div>
                     <div class="btnWrapper"><button class="searchBtn" id="searchRestaurantFormBtn"><img src="/images/search.png" alt="Search button"></button></div>
                 </form>
+                <h2>Results</h2>
+                <div id="searchRestaurantsList">
+                    <ul id="searchRestaurantsListUL"></ul>
+                </div>
             </div>
             <div id="saved">
                 <h2>Saved</h2>
-                <form class="form" id="savedRestaurantsForm">
-                    <input type="hidden" id="savedLocation">
-                    <label for="savedCuisine" id="savedCuisineLabel">Cuisine: 
-                        <select name="savedCuisine" id="savedCuisine">
-                            <option>Freddy's</option>
-                            <option>Mandarin</option>
-                            <option>G's Dairy Delight</option>
-                            <option>Nielsen's Frozen Custard</option>
-                            <option>The Hickory</option>
-                            <option>Random</option>
-                        </select>
-                    </label>  
-                    <div class="btnWrapper"><button class="openSavedBtn" id="openSavedRestaurantsBtn"><img src="images/search.png" alt="Search button"></button></div>
-                </form>
+                <div id="savedRestaurantsList">
+                    <ul id="savedRestaurantsListUL"></ul>
+                </div>
             </div>
-            <div class="restaurantContainer">
-                <h2>Mandarin Restaurant</h2>
-                <div id="phoneInfo" class="resPhoneInfo">
-                    <p>Phone number</p>
-                    <div id="phoneNoString" class="phone">
-                        <p>(208)356-5688</p>
+            <div id="showRestaurantModal" class="modal">
+                <div class="modalContent">
+                    <div class="modalContentHeader">
+                        <span class="close" id="showRestaurantModalClose">&times;</span>
+                        <h2 id="showRestaurantModalTitle"></h2>
+                    </div>
+                    <div class="modalContentBody" id="modalContentBody">
+                        <input type="hidden" id="showRestaurantModalPlaceId">
+                        <h3>Address:</h3>
+                        <p id="showRestaurantModalAddress"></p>
+                        <h3>Phone:</h3>
+                        <p id="showRestaurantModalPhone"></p>
+                        <h3>Rating:</h3>
+                        <p id="showRestaurantModalRating"></p>
+                        <h3>Schedule:</h3>
+                        <ul id="showRestaurantModalSchedule"></ul>
+                        <a id="showRestaurantModalWebsite" href="#" target="_blank"><h3>Website</h3></a>
+                        <div class="btnWrapper"><button class="mdlAddBtn" id="showRestaurantModalSaveBtn"><img src="/images/placeholder-black.png" id="showRestaurantModalSaveBtnImg" alt="Save button"></button></div>
                     </div>
                 </div>
-                <div class="openHours">
-                    <p>Opening hours</p>
-                    <span class="openNow">Open now</span>
-                    <div class="hoursOperation">Today 11 AM to 9 PM</div>
-                </div>
-                <h3>Menu</h3>
-                    <div id="menu-image" class="restaurantMenu">
-                        <img src="images/mandarin_img_1.jpg" alt="Mandarin Restaurant, Rexburg Menu"/>
-                    </div>
+            </div>
+            <div id="loadWindow" class="modal">
+                <img src="/images/loader_red.gif" id="modalLoading" alt="Loading">
             </div>
         </main>
             <hr>
