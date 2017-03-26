@@ -287,6 +287,8 @@ hr {
 
 .form input.error, .form select.error, .form textarea.error {
     background-color: #FFCCCC;
+    animation-name: error-animate;
+    animation-duration: 0.5s;
 }
 
 .form input[type=range] {
@@ -427,6 +429,14 @@ hr {
     display: block;
 }
 
+@keyframes error-animate {
+    0%      {background-color: #FFCCCC; transform: translateX(-15px);}
+    25%     {background-color: #FFFFFF; transform: translateX(15px);}
+    50%     {background-color: #FFCCCC; transform: translateX(-15px);}
+    75%     {background-color: #FFFFFF; transform: translateX(15px);}
+    100%    {background-color: #FFCCCC;}
+}
+
 /* FIND CSS */
 #find {
     display: inline;
@@ -448,6 +458,21 @@ hr {
     border-bottom: 1px solid #07726A;
 }
 
+#find #searchRestaurantsListTitle {
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+#find #searchRestaurantsListTitle li {
+    background: #EF9CA1;
+    color: #FFFFFF;
+    border-top: 1px solid #E41C25;
+    border-bottom: 1px solid #E41C25;
+    font-weight: bolder;
+    font-size: 20px;
+    padding: 5px;
+}
+
 /* SAVED CSS */
 #saved {
     display: none;
@@ -467,6 +492,21 @@ hr {
     color: #FFFFFF;
     border-top: 1px solid #07726A;
     border-bottom: 1px solid #07726A;
+}
+
+#saved #savedRestaurantsListTitle {
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+#saved #savedRestaurantsListTitle li {
+    background: #EF9CA1;
+    color: #FFFFFF;
+    border-top: 1px solid #E41C25;
+    border-bottom: 1px solid #E41C25;
+    font-weight: bolder;
+    font-size: 20px;
+    padding: 5px;
 }
 
 /* HEADER CSS STYLING */

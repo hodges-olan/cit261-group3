@@ -8,6 +8,7 @@ var savedLinks = document.getElementsByClassName("savedLink");
 var findPanel = document.getElementById("find");
 var savedPanel = document.getElementById("saved");
 var searchRestaurantFormBtn = document.getElementById("searchRestaurantFormBtn");
+var savedLocation = "myFavoriteRestaurants";
 
 
 // DEFINE CLASSES
@@ -24,18 +25,16 @@ function showLeftFunction() {
 
 function findLinksFunction() {
     showLeftFunction();
-    findPanel.style.display = "inline";
     savedPanel.style.display = "none";
+    findPanel.style.display = "inline";
 };
 
 function savedLinksFunction() {
     showLeftFunction();
-    loadSavedRestaurants();
+    savedRestaurants();
     findPanel.style.display = "none";
     savedPanel.style.display = "inline";
 };
-
-// INITIALIZE APP PANELS
 
 // CUSTOM FUNCTIONS
 function hasClass(element, cls) {
@@ -82,8 +81,21 @@ function showRestaurantModal(response) {
     });
     document.getElementById("modalContentBody").replaceChild(newShowRestaurantModalSchedule, oldShowRestaurantModalSchedule);
     document.getElementById("showRestaurantModalWebsite").href = response.result.website;
-    document.getElementById("showRestaurantModalSaveBtn").addEventListener("click", saveRestaurant);
     document.getElementById("showRestaurantModalPlaceId").value = response.result.place_id;
+    //add check here for saved or not.
+    var savedRestaurants = loadSavedRestaurants();
+    var found = false;
+    savedRestaurants.forEach(function (restaurant) {
+        if(restaurant === response.result.place_id) {
+            document.getElementById("showRestaurantModalSaveBtnImg").src = "/images/placeholder-red.png";
+            document.getElementById("showRestaurantModalSaveBtn").addEventListener("click", deleteRestaurant);
+            found = true;
+        }
+    });
+    if(!found) {
+        document.getElementById("showRestaurantModalSaveBtnImg").src = "/images/placeholder-black.png";
+        document.getElementById("showRestaurantModalSaveBtn").addEventListener("click", saveRestaurant);
+    }
     showRestaurantModal.style.display = "inline";
 }
 
@@ -92,21 +104,53 @@ function showRestaurantModalCloseFunction() {
     document.getElementById("showRestaurantModal").style.display = "none";
 }
 
+// LOCAL STORAGE FUNCTIONS
+function loadSavedRestaurants() {
+    var savedRestaurants = JSON.parse(localStorage.getItem(savedLocation));
+    if(savedRestaurants === null) {
+        savedRestaurants = Array();
+    }
+    return savedRestaurants;
+}
+
 function saveRestaurant(e) {
-    //add save functionality here
-    alert(document.getElementById("showRestaurantModalPlaceId").value + " saved!");
+    var newSavedRestaurant = document.getElementById("showRestaurantModalPlaceId").value;
+    var lsSavedRestaurants = loadSavedRestaurants();
+    lsSavedRestaurants.forEach(function (restaurant) {
+        if(restaurant === newSavedRestaurant) {
+            return false;
+        }
+    });
+    lsSavedRestaurants.push(newSavedRestaurant);
+    localStorage.setItem(savedLocation, JSON.stringify(lsSavedRestaurants));
     document.getElementById("showRestaurantModalSaveBtnImg").src = "/images/placeholder-red.png";
     document.getElementById("showRestaurantModalSaveBtn").removeEventListener("click", saveRestaurant);
     document.getElementById("showRestaurantModalSaveBtn").addEventListener("click", deleteRestaurant);
+    if(savedPanel.style.display === "inline") {
+        savedRestaurants();
+    }
     return false;
 }
 
 function deleteRestaurant(e) {
-    //add delete functionality here
-    alert(document.getElementById("showRestaurantModalPlaceId").value + " deleted!"); 
-    document.getElementById("showRestaurantModalSaveBtnImg").src = "/images/placeholder-black.png";
-    document.getElementById("showRestaurantModalSaveBtn").removeEventListener("click", deleteRestaurant);
-    document.getElementById("showRestaurantModalSaveBtn").addEventListener("click", saveRestaurant);
+    var newDeleteRestaurant = document.getElementById("showRestaurantModalPlaceId").value;
+    var lsSavedRestaurants = loadSavedRestaurants();
+    var counter = 0;
+    lsSavedRestaurants.forEach(function (restaurant) {
+        if(restaurant === newDeleteRestaurant) {
+            lsSavedRestaurants.splice(counter, 1);
+            localStorage.setItem(savedLocation, JSON.stringify(lsSavedRestaurants));
+            document.getElementById("showRestaurantModalSaveBtnImg").src = "/images/placeholder-black.png";
+            document.getElementById("showRestaurantModalSaveBtn").removeEventListener("click", deleteRestaurant);
+            document.getElementById("showRestaurantModalSaveBtn").addEventListener("click", saveRestaurant);
+            if(savedPanel.style.display === "inline") {
+                savedRestaurants();
+            }
+            return false;
+        } else {
+            counter++;
+        }
+    });
     return false;
 }
 
@@ -114,14 +158,16 @@ function deleteRestaurant(e) {
 function searchRestaurants(location) {
     var cuisine = document.getElementById("cuisine").value;
     var miles = document.getElementById("miles").value;
-    var radius = parseInt(miles) * 1609.34;
     var cost = document.getElementById("cost").value;
-    if (radius === null || miles === "" || miles <= 0 || parseFloat(miles) % 1 !==0) {
-        alert("Search radius must be rounded to the nearest mile, greater than 0.");
+    if (radius === null || miles === "" || miles <= 0) {
+        document.getElementById("miles").value = "";
+        document.getElementById("miles").placeholder = "Whole number here";
         document.getElementById("miles").className = "error";
         return false;
     } else {
         document.getElementById("miles").className = "";
+        var radius = Math.floor(parseInt(miles)) * 1609.34;
+        document.getElementById("miles").value = Math.floor(parseInt(miles));
     }
     var searchRestaurantsUrl = googlePlacesNearbySearch + "key=" + apiKey + "&location=" + location.coords.latitude + "," + location.coords.longitude + "&radius=" + radius + "&type=restaurant&maxprice=" + cost + "&opennow=true";
     if(cuisine !== "All") {
@@ -162,10 +208,9 @@ function showRestaurant(e) {
     searchDetailsXhttp.send();
 }
 
-function loadSavedRestaurants() {
+function savedRestaurants() {
     document.getElementById("loadWindow").style.display = "inline";
-    //load from localstorage functionality into savedRestaurants.  This should be parsed JSON which should be a list of place_ids
-    var savedRestaurants = ["ChIJtziVu2AjTIYR7j2MptLe97w", "ChIJidbDqrM8TIYR6JcAJopppuU"];
+    var savedRestaurants = loadSavedRestaurants();
     var savedRestaurantsResponses = {results:[]};
     savedRestaurants.forEach(function (placeId) {
         var searchDetailsUrl = googlePlacesDetailSearch + "key=" + apiKey + "&placeid=" + placeId;
@@ -188,8 +233,8 @@ function loadSavedRestaurants() {
 // ATTACH EVENTS
 showLeft.addEventListener("click", showLeftFunction);
 searchRestaurantFormBtn.addEventListener("click", getLocation);
-document.getElementById("searchRestaurantsList").addEventListener("click", showRestaurant);
-document.getElementById("savedRestaurantsList").addEventListener("click", showRestaurant);
+document.getElementById("searchRestaurantsListUL").addEventListener("click", showRestaurant);
+document.getElementById("savedRestaurantsListUL").addEventListener("click", showRestaurant);
 document.getElementById("showRestaurantModalClose").addEventListener("click", showRestaurantModalCloseFunction);
 
 for(var i = 0; i < findLinks.length; i++) {
